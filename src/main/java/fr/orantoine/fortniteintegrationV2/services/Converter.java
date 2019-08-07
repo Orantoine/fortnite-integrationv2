@@ -5,7 +5,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONObject;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Converter {
 
@@ -33,14 +33,13 @@ public class Converter {
         match.setTop10(input.getInt("top10"));
         match.setTop12(input.getInt("top12"));
         match.setTop25(input.getInt("top25"));
-        match.setTrnRating(input.getLong("trnRating"));
-        match.setTrnRatingChange(input.getLong("trnRatingChange"));
+
 
         return match;
     }
 
     public Date stringToDate(String stringDate){
-        DateTimeFormatter df = DateTimeFormat.forPattern("YYYY-MM-dd'T'HH:mm:ss.SSS");
+        DateTimeFormatter df = DateTimeFormat.forPattern("YYYY-MM-dd'T'HH:mm:ss");
         long millis = df.parseMillis(stringDate);
         Date date  = new Date(millis);
         return date;

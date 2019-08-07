@@ -36,7 +36,9 @@ public class Runtime {
     public void getData(){
         List<Joueur> joueurList = joueurRepository.findAll();
         for (Joueur joueur : joueurList) {
+            log.info("Récupération des données pour le joueur : "+joueur.getPseudo());
             getInfoJoueurs(joueur.getPseudo());
+            log.info("Récupération terminée pour le joueur : "+joueur.getPseudo());
         }
 
     }
@@ -58,6 +60,7 @@ public class Runtime {
         if (jsonResponse != null && !jsonResponse.getBody().isEmpty()){
             JSONObject jsonObject = new JSONObject(jsonResponse.getBody());
             JSONArray recentMatch = jsonObject.getJSONArray("recentMatches");
+            log.info(recentMatch.length()+" matchs trouvés pour le joueur");
             for (int i = 0; i<recentMatch.length();i++){
                 JSONObject jsonMatch = recentMatch.getJSONObject(i);
                 Converter converter = new Converter();
